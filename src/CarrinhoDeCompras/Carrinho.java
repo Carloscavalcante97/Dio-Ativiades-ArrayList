@@ -1,6 +1,7 @@
 package CarrinhoDeCompras;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Carrinho {
@@ -27,17 +28,32 @@ public void removerItem(String nome){
 public double calcularValorTotal(){
  double valorTotal = 0;
  double quantidadeTotal = 0;
+ double somaItensTotal = 0;
  if(!itemList.isEmpty()) {
      for (Item item : itemList) {
-         valorTotal += item.getPreco();
-         quantidadeTotal = valorTotal * item.getQuantidade();
-     }return quantidadeTotal;
+       double  valorItem = item.getPreco();
+       double quantidadeItem = item.getQuantidade();
+       double valorTotalItens = valorItem * quantidadeItem;
+       somaItensTotal += valorTotalItens;
+     }return somaItensTotal;
  }else throw new RuntimeException("A lista está vázia");
     }
 public void exibirItemList(){
  if(!itemList.isEmpty()){
      System.out.print(itemList);
  }else System.out.print("Lista Vazia");
+}
+public void compararValor(){
+    itemList.sort(Comparator.comparing(Item::getPreco));
+}
+public void compararNome(){
+    itemList.sort(Comparator.comparing(Item::getNome));
+}
+public void compararQuantidade(){
+    itemList.sort(Comparator.comparing(Item::getQuantidade));
+}
+public void compararMaiorQuantidade(){
+    itemList.sort(Comparator.comparing(Item::getQuantidade).reversed());
 }
 @Override
     public String toString() {

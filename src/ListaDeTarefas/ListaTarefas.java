@@ -1,6 +1,9 @@
 package ListaDeTarefas;
 
+import CarrinhoDeCompras.Item;
+
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class ListaTarefas {
@@ -29,6 +32,15 @@ public class ListaTarefas {
   public int imprimirTamanhoLista() {
         return listaTarefas.size();
   }
+  public void compararTarefa(){
+       listaTarefas.sort(Comparator.comparing(Tarefa::getDescricao));
+    }
+  public void compararOrdem(){
+  listaTarefas.sort(Comparator.comparing(Tarefa::getOrdem));
+  }
+    public void compararOrdemInverso(){
+        listaTarefas.sort(Comparator.comparing(Tarefa::getOrdem).reversed());
+    }
   public void imprimirListaTarefas() {
         if (!listaTarefas.isEmpty()) {
                 System.out.print(listaTarefas);
